@@ -2,6 +2,7 @@ package ueg.tc.fluencee.model;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @NoArgsConstructor
 @Entity
@@ -20,13 +21,14 @@ public class Usuario {
     @Column(name = "c_email", length = 256, nullable = false)
     private String email;
 
-    @Column(name = "c_senha", length = 32, nullable = false)
+    @Column(name = "c_senha", length = 256, nullable = false)
     private String senha; // Eu preciso criar no banco como varbinary? ou eu coloco aqui? to meio perdido nessa parte
 
-//    @PrePersist
-//    private void hashPassword() {
-//
-//    }
+    @PrePersist
+    private void hashPassword() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        setSenha(bCryptPasswordEncoder.encode(this.senha));
+    }
 
     @Column(name = "c_ativado", nullable = false)
     private Boolean ativado;

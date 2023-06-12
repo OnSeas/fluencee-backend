@@ -8,6 +8,8 @@ public @Data class UsuarioResponseDTO {
 
     private String email;
 
+    private Boolean ativado;
+
     public String getNome() {
         return nome;
     }
@@ -22,5 +24,13 @@ public @Data class UsuarioResponseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getAtivado() {
+        return ativado;
+    }
+
+    public void setAtivado(Boolean ativado) {
+        this.ativado = ativado;
     }
 }
