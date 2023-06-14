@@ -4,9 +4,9 @@ package ueg.tc.fluencee.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ueg.tc.fluencee.dto.AlterarSenhaDTO;
 import ueg.tc.fluencee.dto.UsuarioRequestDTO;
 import ueg.tc.fluencee.dto.UsuarioResponseDTO;
-import ueg.tc.fluencee.model.Usuario;
 import ueg.tc.fluencee.service.UsuarioService;
 
 import java.util.List;
@@ -35,6 +35,11 @@ public class UsuarioController {
     @PatchMapping(path = "{idUsuario}")
     public ResponseEntity<UsuarioResponseDTO> alterar(@PathVariable("idUsuario") Long id, @RequestBody UsuarioRequestDTO usuarioRequestDTO){
         return ResponseEntity.ok(usuarioService.alterarNome(id, usuarioRequestDTO));
+    }
+
+    @PatchMapping(path = "/trocarsenha/{idUsuario}")
+    public ResponseEntity<UsuarioResponseDTO> trocarSenha(@PathVariable("idUsuario") Long id, @RequestBody AlterarSenhaDTO alterarSenhaDTO){
+        return ResponseEntity.ok(usuarioService.trocarSenha(id, alterarSenhaDTO));
     }
 
     @PatchMapping(path = "desativar/{idUsuario}")

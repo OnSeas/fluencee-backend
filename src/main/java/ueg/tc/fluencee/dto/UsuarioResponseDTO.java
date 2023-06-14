@@ -4,11 +4,21 @@ import lombok.Data;
 
 public @Data class UsuarioResponseDTO {
 
+    private Long idUsuario;
+
     private String nome;
 
     private String email;
 
     private Boolean ativado;
+
+    public Long getId() {
+        return idUsuario;
+    }
+
+    public void setId(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public String getNome() {
         return nome;

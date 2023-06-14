@@ -6,6 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static jakarta.servlet.DispatcherType.ERROR;
@@ -31,7 +37,7 @@ public class SecurityConfig extends ApiSecurityConfig {
                                 .dispatcherTypeMatchers(FORWARD, ERROR).permitAll()
                                 .requestMatchers("/fluencee/usuario", "/login",
                                         // TODO tirar os que estão a seguir, após realizar o login.
-                                        "/fluencee/usuario/{idUsuario}", "/fluencee/usuario/desativar/{idUsuario}").permitAll()
+                                        "/fluencee/usuario/{idUsuario}", "/fluencee/usuario/desativar/{idUsuario}", "/fluencee/usuario/trocarsenha/{idUsuario}").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .csrf().disable(); // Pelo que entendo o csrf proíbe post e put, então precisei tirar
